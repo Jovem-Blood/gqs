@@ -31,7 +31,7 @@ func getNamespacesField(query string) (map[string]string, string) {
 
 	query = pattern.ReplaceAllString(query, "")
 	for _, match := range matches {
-    result[capitalize(match[1])] = match[2]
+		result[capitalize(match[1])] = match[2]
 	}
 
 	return result, query
@@ -44,7 +44,6 @@ func getTerms(query string) (Terms, string) {
 	matches := pattern.FindAllStringSubmatch(query, -1)
 
 	var terms Terms
-	// fmt.Println(query)
 	for _, match := range matches {
 		if strings.HasPrefix(match[0], "-") {
 			terms.NevativeTerms = append(terms.NevativeTerms, match[0])
@@ -53,7 +52,7 @@ func getTerms(query string) (Terms, string) {
 		}
 	}
 
-	pattern.ReplaceAllString(query, "")
+	query = pattern.ReplaceAllString(query, "")
 	return terms, query
 }
 
@@ -81,8 +80,8 @@ func main() {
 		fmt.Printf("Positive Term %d: %s\n", i+1, term)
 	}
 
-  for k, v := range fields {
-    fmt.Printf("fieldSearch %s: %s\n", k, v)
-  }
+	for k, v := range fields {
+		fmt.Printf("fieldSearch %s: %s\n", k, v)
+	}
 
 }
